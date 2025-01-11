@@ -12,10 +12,14 @@ $capabilities = [
     ],
     'local/longread:view' => [
         'captype' => 'read',
-        'contextlevel' => CONTEXT_MODULE,
+        'contextlevel' => CONTEXT_SYSTEM,  // Даем доступ всем пользователям
         'archetypes' => [
-            'student' => CAP_ALLOW,
-            'teacher' => CAP_ALLOW,
+            'guest' => CAP_ALLOW,  // Разрешаем доступ гостям
+            'student' => CAP_ALLOW,  // Разрешаем доступ студентам
+            'teacher' => CAP_ALLOW,  // Разрешаем доступ преподавателям
+            'editingteacher' => CAP_ALLOW,  // Разрешаем доступ преподавателям
+            'manager' => CAP_ALLOW,  // Разрешаем доступ менеджерам
         ],
     ],
 ];
+

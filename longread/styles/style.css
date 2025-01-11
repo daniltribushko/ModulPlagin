@@ -1,0 +1,32 @@
+.longread-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.longread-page img {
+    max-width: 100%;
+    margin: 10px 0;
+}
+
+.longread-page .navigation {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.longread-page .btn {
+    padding: 10px 15px;
+    background-color: #0073aa;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.longread-page .btn:hover {
+    background-color: #005b8a;
+}
