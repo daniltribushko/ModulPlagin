@@ -1,30 +1,33 @@
-define([], function() {
+define(['jquery'], function($) {
     return {
         init: function() {
-            const pages = document.querySelectorAll('.longread-page');
             let currentPage = 0;
+            const pages = $('.longread-page');
+            const prevButton = $('#prev-page');
+            const nextButton = $('#next-page');
 
-            const showPage = (index) => {
-                pages.forEach((page, i) => {
-                    page.style.display = i === index ? 'block' : 'none';
-                });
-            };
+            function updateNavigation() {
+                pages.addClass('hidden-page');
+                $(pages[currentPage]).removeClass('hidden-page');
+                prevButton.prop('disabled', currentPage === 0);
+                nextButton.prop('disabled', currentPage === pages.length - 1);
+            }
 
-            document.getElementById('next').addEventListener('click', () => {
-                if (currentPage < pages.length - 1) {
-                    currentPage++;
-                    showPage(currentPage);
-                }
-            });
-
-            document.getElementById('prev').addEventListener('click', () => {
+            prevButton.on('click', function() {
                 if (currentPage > 0) {
                     currentPage--;
-                    showPage(currentPage);
+                    updateNavigation();
                 }
             });
 
-            showPage(currentPage);
+            nextButton.on('click', function() {
+                if (currentPage < pages.length - 1) {
+                    currentPage++;
+                    updateNavigation();
+                }
+            });
+
+            updateNavigation();
         }
     };
 });

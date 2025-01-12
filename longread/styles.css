@@ -1,0 +1,22 @@
+.longread-container {
+    text-align: center;
+}
+
+.longread-page {
+    display: none;
+}
+
+.longread-page:not(.hidden-page) {
+    display: block;
+}
+
+.longread-navigation {
+    margin-top: 20px;
+}
+
+.longread-nav {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

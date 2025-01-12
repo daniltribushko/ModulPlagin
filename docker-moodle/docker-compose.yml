@@ -1,45 +1,37 @@
-version: '3'
+version: '3.9'
 
 services:
-    dbapp:
-        image: mysql:5
-        restart: always
-        volumes:
-            - db-volume:/var/lib/mysql
-        env_file:
-            - moodle_variables.env
-        networks:
-            - backendDB
-        deploy:
-            replicas: 1
-            restart_policy:
-                condition: on-failure
-    moodleapp:
-        image: jhardison/moodle:latest
-        links:
-            - dbapp:DB
-        depends_on: 
-            - dbapp
-        restart: always
-        volumes:
-            - moodleapp-data:/var/moodledata
-        ports:
-            - 80:80
-            - 443:443
-        env_file:
-            - moodle_variables.env
-        networks:
-            - backendDB
-            - frontendWEB
-        deploy:
-            replicas: 1
-            restart_policy:
-                condition: on-failure            
+  db:
+    image: mariadb:10.5
+    container_name: moodle_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: moodleroot
+      MYSQL_DATABASE: moodle
+      MYSQL_USER: moodleuser
+      MYSQL_PASSWORD: moodlepass
+    volumes:
+      - db_data:/var/lib/mysql
 
-volumes: 
-    db-volume:
-    moodleapp-data:
+  moodle:
+    image: bitnami/moodle:4
+    container_name: moodle_app
+    restart: always
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    environment:
+      MOODLE_DATABASE_TYPE: mariadb
+      MOODLE_DATABASE_HOST: db
+      MOODLE_DATABASE_PORT_NUMBER: 3306
+      MOODLE_DATABASE_NAME: moodle
+      MOODLE_DATABASE_USER: moodleuser
+      MOODLE_DATABASE_PASSWORD: moodlepass
+      MOODLE_USERNAME: admin
+      MOODLE_PASSWORD: adminpass
+    volumes:
+      - moodle_data:/bitnami/moodle
 
-networks:
-    backendDB:
-    frontendWEB:
+volumes:
+  db_data:
+  moodle_data:

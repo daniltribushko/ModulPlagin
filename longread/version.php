@@ -1,8 +1,8 @@
 <?php
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_longread';
-$plugin->version = 2024011000;
-$plugin->requires = 2022041904;
-$plugin->maturity = MATURITY_ALPHA;
-$plugin->release = 'v0.1';
+$plugin->component = 'mod_longread'; // Имя компонента.
+$plugin->version = 2025011201; // Текущая версия.
+$plugin->release = 'v1.0'; // Версия плагина.
+$plugin->requires = 2022112800; // Минимальная версия Moodle (4.0).
+$plugin->maturity = MATURITY_STABLE;
