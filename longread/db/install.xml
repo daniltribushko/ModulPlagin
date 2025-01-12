@@ -5,7 +5,7 @@
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Primary key"/>
                 <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" COMMENT="Name of the longread"/>
-                <FIELD NAME="content" TYPE="text" NOTNULL="false" COMMENT="Longread content"/>
+                <FIELD NAME="content" TYPE="longtext" NOTNULL="false" COMMENT="Longread content"/>
                 <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="Creation time"/>
                 <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="Last modified time"/>
             </FIELDS>
